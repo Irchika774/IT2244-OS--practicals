@@ -1,0 +1,6 @@
+mkdir Day_01 ::it stands for making directory
+cd Day_01        ::moves inside the folder
+ mkdir screenshot
+ mkdir code
+cd.. ::moves back to the parent directory
+ 

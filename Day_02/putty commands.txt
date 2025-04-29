@@ -1,0 +1,20 @@
+dir /? -Display the helping informations
+
+touch filename -create empty filename
+
+wc -l xyz.csv  - count the number of lines
+
+cut -d ',' -f1,3 xyz.csv -use  1 and 3 column and separate it using  
+
+
+tail -n 5 yz.csv -display last 5 lines in yz.csv
+
+echo hello! - out put hello words
+
+cat filename.txt - display the all of content in a filename
+
+
+
+
+
+

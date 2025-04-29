@@ -1,0 +1,87 @@
+[2021ict21@fedora ~]$ cal ->Displays the current month's calendar.
+     March 2025
+Su Mo Tu We Th Fr Sa
+                   1
+ 2  3  4  5  6  7  8
+ 9 10 11 12 13 14 15
+16 17 18 19 20 21 22
+23 24 25 26 27 28 29
+30 31
+
+
+
+[2021ict21@fedora ~]$ pwd ->Print Working Directory
+/home/2021ict21
+
+
+[2021ict21@fedora ~]$ ls  ->List Files and Directories
+1T2244  test.txt
+
+
+[2021ict21@fedora ~]$ ls -a  ->List All, including Hidden Files
+.  ..  1T2244  .bash_history  .bash_logout  .bash_profile  .bashrc  .mozilla  test.txt
+[2021ict21@fedora ~]$
+
+2021ict21@fedora ~]$ ls -ltr   ->Lists files with details, sorted by modification time in ascending order.
+total 8
+drwxr-xr-x. 2 2021ict21 2021ict21 4096 Mar 17 11:56 1T2244
+-rw-r--r--. 1 2021ict21 2021ict21   26 Mar 21 15:12 test.txt
+
+
+[2021ict21@fedora ~]$ date +%d  ->Displays the day of the month
+24
+
+[2021ict21@fedora ~]$ date +%y  ->Displays the last two digits of the year
+25
+
+
+[2021ict21@fedora ~]$ date +%A   ->Displays the full weekday name
+Monday
+
+
+[2021ict21@fedora ~]$ date +%a -> Displays the short weekday name
+Mon
+
+[2021ict21@fedora ~]$ date +%B ->Displays the full month name
+March
+[2021ict21@fedora ~]$ date +%b -> Displays the short month name
+Mar
+
+
+[2021ict21@fedora ~]$ date +%D ->Displays the date in MM/DD/YY format
+03/24/25
+[2021ict21@fedora ~]$ date +%d   ->
+24
+
+
+[2021ict21@fedora ~]$[2021ict21@fedora ~]$ ^C
+[2021ict21@fedora ~]$ date +%m    ->Displays the month number
+03
+
+
+
+[2021ict21@fedora ~]$ date
+Mon Mar 24 11:49:39 AM +0530 2025
+
+[2021ict21@fedora ~]$ date +%H ->Displays the hour in 24-hour format 
+11
+[2021ict21@fedora ~]$ date +%H
+11
+[2021ict21@fedora ~]$ date +%h  ->Same as %b, displays the short month name (Mar)
+Mar
+
+
+[2021ict21@fedora ~]$ date +%x  ->Displays the date in the system's locale format (03/24/2025).
+03/24/2025
+[2021ict21@fedora ~]$ date +%X  ->Displays the time in the system's locale format
+11:51:43 AM
+
+
+[2021ict21@fedora ~]$ date +%Z  ->Displays the time zone abbreviation (+0530).
++0530
+[2021ict21@fedora ~]$ date +%z->Displays the UTC offset 
++0530
+[2021ict21@fedora ~]$
+
+
+

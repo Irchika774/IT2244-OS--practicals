@@ -1,0 +1,57 @@
+1T2244  test.txt
+[2021ict21@fedora ~]$ more test.txt  ->Displays the contents of test.txt
+gg      45      56      78
+gh      77      78      90
+
+
+[2021ict21@fedora ~]$ tail n2 test.txt  ->tail -n2 test.txt(Displays the last 2 lines of test.txt.)
+tail: cannot open 'n2' for reading: No such file or directory
+==> test.txt <==
+gg      45      56      78
+gh      77      78      90
+
+
+[2021ict21@fedora ~]$ tail n1 test.txt
+tail: cannot open 'n1' for reading: No such file or directory
+==> test.txt <==
+gg      45      56      78
+gh      77      78      90
+
+
+[2021ict21@fedora ~]$ tail -n1 test.txt
+
+
+[2021ict21@fedora ~]$ cut -d" " -f3 test.txt ->Extracts the 3rd field (column) from each line in test.txt, assuming space (" ") is the delimit
+
+gh      77      78      90 ->The output is incorrect because the file likely has tab spacing instead of single spaces.
+-
+
+[2021ict21@fedora ~]$ head -1 test.txt    ->Displays the first line of test.txt.
+gg      45      56      78
+[2021ict21@fedora ~]$ tail -2 test.txt
+gh      77      78      90
+
+
+[2021ict21@fedora ~]$ awk '(print $3)' test.txt
+awk: cmd. line:1: (print $3)
+awk: cmd. line:1:  ^ syntax error
+awk: cmd. line:2: (print $3)
+awk: cmd. line:2:           ^ unexpected newline or end of string
+
+[2021ict21@fedora ~]$ wc -w test.txt ->Counts the total number of words
+8 test.txt
+
+[2021ict21@fedora ~]$ wc -l test.txt  ->Counts the total number of lines
+3 test.txt
+
+[2021ict21@fedora ~]$ wc -m test.txt   -> Counts the total number of characters
+26 test.txt
+
+[2021ict21@fedora ~]$ awk '{print NF;exit}' test.txt
+4
+
+[2021ict21@fedora ~]$  
+
+
+NF-prints the total number of columns (fields) in the first line.
+exit ensures only the first line is processed.
