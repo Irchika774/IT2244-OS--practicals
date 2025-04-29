@@ -1,0 +1,213 @@
+q1).write a code  for small astrology based on your life path number for that get date of birth from user then calculate life path number.(use switch case)
+
+ 	Example:
+         calculator for life path number:
+              a=date%10
+              b=date/10
+              c=a+b
+     
+       if life path number:
+            1:Lucky
+            2:Carefully do your work
+            3:Stronger
+            4:Happy
+            5:can get help
+            6:Doubt
+            7:Sad
+            8:Like
+            9:Courage
+
+
+touch q1.sh
+vi q1.sh
+
+echo ' calculator for life path number:'
+read Date
+a=$Date%10
+b=$Date/10
+c='expr $a+$b'
+
+case $c in 
+ 	    1)echo "Lucky";;
+            2)echo "Carefully do your work";;:
+            3)echo "Stronger";;
+            4)echo "Happy";;
+            5)echo "can get help";;
+            6)echo "Doubt";;
+            7)echo "Sad";;
+            8)echo "Like";;
+            9)echo "Courage";;
+            *)echo "unrecognized number";;
+
+
+
+touch qn.sh
+vi qn.sh
+
+
+echo ' calculator for life path number:'
+read Date
+a=$Date%10
+b=$Date/10
+c='expr $a+$b'
+
+case $c in 
+ 	    1)echo "Lucky";;
+            2)echo "Carefully do your work";;
+            3)echo "Stronger";;
+            4)echo "Happy";;
+            5)echo "can get help";;
+            6)echo "Doubt";;
+            7)echo "Sad";;
+            8)echo "Like";;
+            9)echo "Courage";;
+            *)read Date
+		a=$Date%10
+		b=$Date/10
+		c='expr $a+$b'
+                   case $c in 
+ 	    1)echo "Lucky";;
+            2)echo "Carefully do your work";;
+            3)echo "Stronger";;
+            4)echo "Happy";;
+            5)echo "can get help";;
+            6)echo "Doubt";;
+            7)echo "Sad";;
+            8)echo "Like";;
+            9)echo "Courage";;
+
+
+
+
+
+Q2) Give list of numbers then calculate the summation and ,multiplication using for loop.
+
+	Example:-
+          1 2 3 4 5
+            summation=15
+           multiplication =120
+
+
+
+touch q2.sh
+vi q2.sh
+
+let sum=0
+let mul=1
+
+for num in 1 2 3 4 5
+do 
+sum=$(($sum + $num))
+mul=$(($mul * $num))
+done
+echo "Summation" $sum
+echo "multiplication" $mul
+
+
+
+Q3)print intigers from 1 to 10 using while loop
+
+   touch Q3.sh
+   vi Q3.sh
+
+let i=1
+while [ $i -le 10 ]
+do
+echo $i
+i=$(($i + 1))
+done     
+       
+
+Q4)print below pattern using nested loop columns =7 ,rows=7
+
+   i).       *
+             * * 
+             * * *
+             * * * * 
+             * * * * *
+             * * * * * * 
+             * * * * * * *
+
+   touch pattern1.sh
+   vi pattern1.sh
+
+for((i=1;i<=7;i++))
+do
+for((j=0;j<=i;j++))
+do
+echo -n "*"
+done
+echo ""
+done
+
+
+
+
+   ii). * * * * * * *
+        * * * * * *
+        * * * * *
+        * * * *
+        * * *
+        * *
+        * 
+for((i=1;i<=7;i++))
+do
+for((j=7; j>i; j--))
+do
+echo -n "*"
+done
+echo ""
+done
+  
+
+ iii)1
+     2 2
+     3 3 3
+     4 4 4 4
+     5 5 5 5 5
+     6 6 6 6 6 6
+
+
+for ((i=1; i<=6; i++)); do
+for ((j=1; j<=i; j++)); do
+echo -n "$i "
+done
+echo ""  
+done
+  
+
+1
+1 2
+1 2 3 
+1 2 3 4 
+1 2 3 4 5 
+1 2 3 4 5 6
+
+
+
+for ((i=1; i<=6; i++)); do
+for ((j=1; j<=i; j++)); do
+echo -n "$j "
+done
+echo ""  
+done
+
+     *   
+    * *
+   * * *
+  * * * *
+ * * * * * 
+
+
+rows=5
+for ((i=1; i<=rows; i++)); do
+for ((k=rows; k>i; k--)); do
+echo -n " "
+done
+for ((j=1; j<=i; j++)); do
+echo -n "* "
+done
+echo ""  
+done
+
+

@@ -1,0 +1,33 @@
+echo "Enter the First number"
+read a
+echo "Enter the Second number"
+read b
+echo "Enter the Third number"
+read c
+
+
+lcm=$a
+while [ $((lcm % a)) -ne 0 ] || [ $((lcm % b)) -ne 0 ]
+do
+lcm=$((lcm + 1))
+done
+echo "LCM of $a and $b is $lcm"
+
+
+gcd=$b
+while [ $gcd -ne 0 ]
+do
+remainder=$((c % gcd))
+c=$gcd
+gcd=$remainder
+done
+echo "GCD of $b and $c is $c"
+
+
+
+
+
+
+
+
+
