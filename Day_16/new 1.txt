@@ -1,0 +1,201 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+int main() {
+ return 0;
+}
+gcc  fileNAme.c -o fileName
+./fileName
+
+
+#include <stdio.h>
+#include <unistd.h> //for exit()
+#include <stdlib.h>  //for sleep()
+
+int main(){
+	printf("program Started \n");
+	
+	printf("Sleeping for 3 seconds...");
+	sleep(3); //pause for 3 sedconds
+	
+	printf("Enter the program.\n");
+	exit(0);//clean exit
+}
+
+
+#include <stdio.h>
+#include <unistd.h> //for exit()
+#include <stdlib.h> 
+#include <sys/wait.h>
+
+int main() {
+	pid_t pid;
+	printf("Parent process started. PID %D\n",getpid());
+    
+	pid=fork(); //createe a new child process
+	
+	if(pid < 0){
+		perror("fork failed");
+		exit(1);
+	}
+	
+	if(pid == 0){
+		printf("Child process. PID %d,sleep for 2 seconds....\n");
+		sleep(2);
+		printf("child process existing.\n");
+		exit(0);
+	}
+   else{
+	   //parent process
+	   int status;
+	   printf("parent waiting for child to finsh...\n");
+	   wait(&status);
+	   if(WIFEXITED(status)){
+		   printf("child exited with status: %d \n",WEXITSTATUS(status));
+	   }
+	   else{
+		   printf("child did not exit normally.\n");
+		   
+	   }
+	   printf("parent process ending. \n");
+}
+ return 0;
+}
+
+//Exersice:
+  //First child slept for 1 seconds
+  //Second child:slept for 3 seconds
+  //Parent:Both children have finish
+  
+  
+#include <stdio.h>
+#include <unistd.h> //for exit()
+#include <stdlib.h> 
+#include <sys/wait.h>
+
+int main(){
+	pid_t f1;
+	f1=fork();
+	
+	if(f1 < 0){
+		perror("fork failed");
+		exit(1);
+	}
+	
+	if(f1 == 0){
+		printf("Child process. PID %d,sleep for 2 seconds....\n");
+		sleep(1);
+		printf("child process existing.\n");
+		exit(0);
+	}
+	 else{
+	   //parent process
+	   pid_t f2;
+	   f2=fork();
+	   if (f2==0)
+	   {	   
+	   printf("Child process. PID %d,sleep for 3 seconds....\n");
+	   sleep(3);
+		printf("child process existing.\n");
+		exit(0);
+	   }
+	   else{
+		   wait(NULL);
+		   wait(NULL);
+		   printf("Both chldren have been finish");
+	   }
+}
+	
+	return 0;
+}
+
+
+//Exersice02:
+ //First child:sleeps for 2 seconds,exit with status 2.
+ //second child::sleeps for 1 second,exit with status 1.
+ //Parent: wait twice,and prints which child(by PID or exit code)
+ //finish first and econd
+ 
+ #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main() {
+    pid_t child1, child2, wpid;
+    int status;
+    int i;  
+
+    child1 = fork();
+    if (child1 == 0) {
+        sleep(2);
+        exit(2);
+    }
+
+    child2 = fork();
+    if (child2 == 0) {
+        sleep(1);
+        exit(1);
+    }
+
+    // Parent waits for both children
+    for (i = 0; i < 2; i++) {
+        wpid = wait(&status);
+        if (WIFEXITED(status)) {
+            printf("Child with PID %d exited with status %d\n", wpid, WEXITSTATUS(status));
+        }
+    }
+
+    return 0;
+}
+
+ 
+ 
+ 
+//Exersice 03:
+ //The parent creates a child process.
+ //A child create a gramndchild process.
+ //A grand child sleep 2 seconds and exists with status 2.
+ //The child waits for the grandchild, prints its exists status,
+ //then exits with status 55
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main() {
+    pid_t child, grandchild, wpid;
+    int status;
+
+    child = fork();
+    if (child == 0) {
+        // Inside child process
+        grandchild = fork();
+
+        if (grandchild == 0) {
+            // Inside grandchild process
+            sleep(2);
+            exit(2);
+        } else {
+            // Child process waits for grandchild
+            wait(&status);
+            if (WIFEXITED(status)) {
+                printf("Grandchild exited with status %d\n", WEXITSTATUS(status));
+            }
+            exit(55);  // Child exits
+        }
+    } else {
+        // Parent waits for child
+        wait(&status);
+        if (WIFEXITED(status)) {
+            printf("Child exited with status %d\n", WEXITSTATUS(status));
+        }
+    }
+
+    return 0;
+}
+
+ 
