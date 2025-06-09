@@ -1,0 +1,244 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+int main() {
+ return 0;
+}
+gcc  fileNAme.c -o fileName
+./fileName
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#define MSGSIZE 16
+ char* msg1 ="Hello World #1";
+ char* msg2 ="Hello World #2";
+ char* msg3 ="Hello World #3";
+ 
+ int main()
+ {
+	char inbuf[MSGSIZE];
+    int p[2], i; //why take p[2]
+	
+	if (pipe(p) < 0)
+		exit(1);
+	
+	/*continued*/
+	/*write pipe*/
+	
+	write(p[1], msg1, MSGSIZE); //use to write pipe
+	write(p[1], msg2, MSGSIZE);
+	write(p[1], msg3, MSGSIZE);
+	//why p[1] what is  that p?
+	for(i=0; i<3; i++){
+		/*read pipe*/
+		read(p[0],inbuf,MSGSIZE); //read(fildes,msg,msgsize)
+		printf("%s\n", inbuf);
+	}
+
+	
+   return 0;
+}
+
+
+
+
+#include <stdio.h>   // Standard I/O library for printf
+#include <stdlib.h>  // Standard library for exit()
+#include <unistd.h>  // POSIX API for pipe(), read(), write()
+
+#define MSGSIZE 16   // Define constant message size for buffer and messages
+
+char* msg1 ="Hello World #1"; // Message 1 to write into the pipe
+char* msg2 ="Hello World #2"; // Message 2 to write into the pipe
+char* msg3 ="Hello World #3"; // Message 3 to write into the pipe
+
+int main()
+{
+    char inbuf[MSGSIZE];  // Buffer to store data read from pipe
+
+    int p[2], i;          // 'p' is an array of two ints, used as file descriptors for the pipe
+                          // Why p[2]? Because pipe() creates a unidirectional communication channel
+                          // and returns two file descriptors: p[0] for reading and p[1] for writing
+
+    if (pipe(p) < 0)      // Create the pipe; pipe() returns 0 on success and -1 on failure
+        exit(1);          // Exit if pipe creation fails
+
+    /* write pipe */
+
+    // Write data into the pipe using the write-end file descriptor p[1]
+    // Why p[1]? Because pipe() returns two descriptors:
+    // p[0] = read end of pipe, p[1] = write end of pipe
+    // So to write data into pipe, we write to p[1]
+    write(p[1], msg1, MSGSIZE);  // Write msg1 (16 bytes) into pipe
+    write(p[1], msg2, MSGSIZE);  // Write msg2 (16 bytes) into pipe
+    write(p[1], msg3, MSGSIZE);  // Write msg3 (16 bytes) into pipe
+
+    for(i=0; i<3; i++){
+        /* read pipe */
+        read(p[0], inbuf, MSGSIZE);   // Read 16 bytes from pipe's read end p[0] into inbuf
+        printf("%s\n", inbuf);        // Print the message read from pipe
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+/*1.read 2 input from users(//parent process)
+  name:
+  reg no:
+  age:
+  
+  2.print the output from the child (//child process)
+    name:abc
+	reg no:2022/ict/21
+	age:24
+  
+  */
+  
+  
+  /*
+   |-define LIbrariies
+   |-declare the variables
+   |-creating fork
+   |-get input from the users
+   |-strong using write()
+   |-Executing read()
+  
+  */
+  
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+int main() {
+ 
+ int f1=fork();
+   long name;
+   long regno;
+   int age;
+   
+   pid_t f1;
+  if(f1=0){
+	  
+	  
+  }
+  
+  else(f1>0){
+	  
+  }
+ 
+ 
+ return 0;
+}
+
+
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+char* name;
+char* reg no;
+char* age;
+
+int main() {
+	
+    int p[2], f, i;
+	char arr[MSGSIZE];
+	
+	int f=fork()
+	
+	if(f==0){
+		printf("Name:");
+		scanf("%s",&name);
+		printf("RegNo:");
+		scanf("%s",&regno);
+		printf("Age:");
+		scanf("%d",&age);
+	}
+	else if{
+		printf("Child process output..");
+		printf("Name: ",&name);
+		printf("RegNo: ",&regno);
+		printf("Age: ",&age);
+	}
+	
+	else{
+		wait(NULL);
+	}
+	return 0;
+}
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+int main() {
+    int p[2];  
+    pid_t f;
+    char buffer[100];
+
+    if (pipe(p) == -1) {
+        perror("Pipe failed");
+        return 1;
+    }
+
+    f = fork(); 
+
+    if (f < 0) {
+        perror("Fork failed");
+        return 1;
+    }
+
+    if (f > 0) {  
+        close(p[0]); 
+
+        char name[50], regNo[50], age[10];
+        printf("Enter Name: ");
+        fgets(name, sizeof(name), stdin);
+        printf("Enter Reg No: ");
+        fgets(regNo, sizeof(regNo), stdin);
+        printf("Enter Age: ");
+        fgets(age, sizeof(age), stdin);
+
+       
+        snprintf(buffer, sizeof(buffer), "Name: %sReg No: %sAge: %s", name, regNo, age);
+        write(p[1], buffer, strlen(buffer) + 1); 
+        close(p[1]);
+
+        wait(NULL);
+    } else {  
+        close(p[1]); 
+        read(p[0], buffer, sizeof(buffer)); 
+        printf("\nReceived from parent:\n%s\n", buffer);
+        close(p[0]); 
+    }
+
+    return 0;
+}
+
+
+exe 2:
+
+area of circle rectangle triangle  square
+
+step1: parent process get input for users
+
+step 2: sending those input to child process
+
+step 3:child process getting those input from parent and doing calculation
+
+step 4:send the calculate value to the parent
+
+step 5: parent  print the output
