@@ -1,0 +1,13 @@
+Q1)write a  c program that creates two threats.Each threats should print a messqage indicating it is running. 
+The mAIN THREAD SHOULD WAIT FOR BOTH threads to finish before existing.
+
+Q2)write a programm to create 5 threads. Each thread should print its thread ID and then exit. the main thread ID tand then exist. ^The main thread should join all threads and print a completion message.
+
+Q3)Write a program thet creates a thread which prints numbers from 1 to 10 with a 1-second to delay between each
+   number.the main thread should wait for this thread to finish.
+
+Q4)create 2 threads where one thread increments a global counter 100 times and the other thread decrements
+   the same counter 100 times. print the final value of the counter after both thread finish.
+
+Q5)Implement  a theread function that takes an intiger arguement, squares it,
+   and returns the result to the mAIN THREAD using pthread_exit and pthread join.
